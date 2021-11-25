@@ -65,8 +65,10 @@ int Controller_mostrarLibros(LinkedList *pArrayListLibro,
 	int retorno;
 	retorno = -1;
 	if (pArrayListLibro != NULL && pArraylistEditorial != NULL) {
-		printf(" __________ _______________ _______________ __________ ____________________ \n");
-		printf("|ID Libro  |Titulo         |Autor          |Precio    |Editorial           |\n");
+		printf(
+				" __________ _______________ _______________ __________ ____________________ \n");
+		printf(
+				"|ID Libro  |Titulo         |Autor          |Precio    |Editorial           |\n");
 		for (int i = 0; i < ll_len(pArrayListLibro); i++) {
 			pAuxLibro = (eLibro*) ll_get(pArrayListLibro, i);
 			for (int j = 0; j < ll_len(pArraylistEditorial); j++) {
@@ -142,6 +144,17 @@ int Controller_filter(LinkedList *pArrayListLibro) {
 			ll_deleteLinkedList(listaMinotauro);
 			retorno = 0;
 		}
+	}
+	return retorno;
+}
+int Controller_map(LinkedList *pArrayListLibro) {
+	int retorno;
+	retorno = -1;
+	if (pArrayListLibro != NULL) {
+		if (ll_map(pArrayListLibro, Libro_mapeado) == 0) {
+			Controller_saveAsText("Mapeado.csv", pArrayListLibro);
+		}
+		retorno = 0;
 	}
 	return retorno;
 }

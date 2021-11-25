@@ -19,5 +19,6 @@ int Controller_mostrarLibros(LinkedList *pArrayListLibro,
 int Controller_saveAsText(char *path, LinkedList *pArrayListFiltrada);
 int Controller_print(eLibro *Libro, eEditorial *Editorial);
 int Controller_filter(LinkedList *pArrayListLibro);
+int Controller_map(LinkedList *pArrayListLibro);
 
 #endif /* CONTROLLER_H_ */

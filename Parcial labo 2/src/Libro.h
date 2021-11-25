@@ -32,5 +32,6 @@ int Libro_getPrecio(eLibro *this, int *precio);
 
 int Libro_compareByAutor(void *libro, void *libro2);
 int Libro_isMinotauro(void *libro);
+int Libro_mapeado(void *this);
 
 #endif /* LIBRO_H_ */

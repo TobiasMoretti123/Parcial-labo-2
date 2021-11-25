@@ -504,4 +504,17 @@ LinkedList* ll_filter(LinkedList *this, int (*fn)(void *element)) {
 	}
 	return cloneArraylist;
 }
+int ll_map(LinkedList *this, int (*pFunc)(void*)) {
+	int returnAux = -1;
+	void *pElement;
+	if (this != NULL && pFunc != NULL) {
+		for (int i = 0; i < ll_len(this); i++) {
+			pElement = ll_get(this, i);
+			if (pFunc(pElement)) {
+				returnAux = 0;
+			}
+		}
+	}
+	return returnAux;
+}
 

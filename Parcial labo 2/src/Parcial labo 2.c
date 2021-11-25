@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Controller.h"
 #include "Editorial.h"
-#define OPCIONES 6
+#define OPCIONES 7
 int main(void) {
 	setbuf(stdout, NULL);
 	LinkedList *listaLibro;
@@ -16,8 +16,8 @@ int main(void) {
 	banderaLibro = 0;
 	do {
 		if (utn_getInt(&opciones, 2,
-				"1.Leer archivo libro\n2.Leer archivo editorial\n3.Ordenar lista por autor\n4.Imprimir libros\n5.Filtrar por MINOTAURO\n6.Salir\nIngrese opcion: ",
-				"Opcion invalida ", 1, 6, 4, 0) != 1) {
+				"1.Leer archivo libro\n2.Leer archivo editorial\n3.Ordenar lista por autor\n4.Imprimir libros\n5.Filtrar por MINOTAURO\n6.Generar archivo de salida\n7.Salir\nIngrese opcion: ",
+				"Opcion invalida ", 1, OPCIONES, 4, 0) != 1) {
 			break;
 		}
 		switch (opciones) {
@@ -59,6 +59,15 @@ int main(void) {
 			}
 			break;
 		case 6:
+			if (banderaEditorial == 1 && banderaLibro == 1) {
+				if (Controller_map(listaLibro) == 0) {
+					printf("Lista mapeada guardada el mapeado.csv\n");
+				}
+			} else {
+				printf("No puede mapear si no hay ningun archivo cargado\n");
+			}
+			break;
+		case 7:
 			ll_deleteLinkedList(listaLibro);
 			ll_deleteLinkedList(listaEditorial);
 			printf("Usted salio del servicio\n");

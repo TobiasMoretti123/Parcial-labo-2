@@ -74,12 +74,13 @@ int parser_GuardarListaFiltrada(FILE *pFile, LinkedList *pArrayListaFiltrada) {
 	eLibro *pAux;
 	int retorno;
 	int i;
+	int id;
 	char titulo[20];
 	char autor[20];
 	int precio;
 	int len;
 	len = ll_len(pArrayListaFiltrada);
-	fprintf(pFile, "titulo,autor,precio\n");
+	fprintf(pFile, "idLibro,titulo,autor,precio\n");
 	for (i = 0; i < len; i++) {
 		pAux = (eLibro*) ll_get(pArrayListaFiltrada, i);
 		if (pAux == NULL) {
@@ -87,8 +88,9 @@ int parser_GuardarListaFiltrada(FILE *pFile, LinkedList *pArrayListaFiltrada) {
 		}
 		if (Libro_getTitulo(pAux, titulo) == 0
 				&& Libro_getAutor(pAux, autor) == 0
-				&& Libro_getPrecio(pAux, &precio) == 0) {
-			fprintf(pFile, "%s,%s,%d\n", titulo, autor, precio);
+				&& Libro_getPrecio(pAux, &precio) == 0
+				&& Libro_getId(pAux, &id) == 0) {
+			fprintf(pFile, "%d,%s,%s,%d\n", id, titulo, autor, precio);
 		}
 	}
 	if (i == len) {

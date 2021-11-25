@@ -222,3 +222,36 @@ int Libro_isMinotauro(void *libro) {
 	}
 	return retorno;
 }
+int Libro_mapeado(void *this) {
+	eLibro *pLibro;
+	int auxPrecio;
+	int descuento;
+	int precioFinal;
+	int auxEditorial;
+	int retorno = -1;
+
+	if (this != NULL) {
+
+		pLibro = (eLibro*) this;
+		if (pLibro != NULL) {
+			if (Libro_getPrecio(pLibro, &auxPrecio) == 0
+					&& Libro_getIdEditorial(pLibro, &auxEditorial) == 0) {
+				if (auxPrecio >= 300 && auxEditorial == 1) {
+					retorno = 0;
+					descuento = auxPrecio * 20 / 100;
+					precioFinal = auxPrecio - descuento;
+					Libro_setPrecio(pLibro, precioFinal);
+				} else {
+					if (auxPrecio >= 200 && auxEditorial == 2) {
+						retorno = 0;
+						descuento = auxPrecio * 10 / 100;
+						precioFinal = auxPrecio - descuento;
+						Libro_setPrecio(pLibro, precioFinal);
+					}
+				}
+			}
+		}
+	}
+	return retorno;
+}
+
